@@ -1,7 +1,16 @@
 import React, { useState } from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
-import NavBar from './components/NavBar'
+
 import pagesList from './models/pagesList'
+
+import NavBar from './components/NavBar'
+
+import Admin from './pages/Admin'
+import Article from './pages/Article'
+import Articles from './pages/Articles'
+import Categories from './pages/Categories'
+import Login from './pages/Login'
+import Register from './pages/Register'
 
 function App() {
   const [isAuth, setAuthState] = useState(false)
@@ -12,9 +21,12 @@ function App() {
       <NavBar pages={navbarPages} isAdmin={isAdmin} isAuth={isAuth} />
       <div className="container">
         <Switch>
-          {pagesList.map((page) => (
-            <Route exact key={page.name} path={page.link} component={page.component} />
-          ))}
+          <Route exact path="/articles/:id" component={Article} />
+          <Route exact path="/articles" component={Articles} />
+          <Route exact path="/categories" component={Categories} />
+          <Route exact path="/admin" component={Admin} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/register" component={Register} />
         </Switch>
         <Redirect to="/articles" />
       </div>
