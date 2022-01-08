@@ -91,33 +91,37 @@ const Pagination = ({ currentPage, pageSize, itemsCount, handleChangePage }) => 
   }
 
   return (
-    <ul className="pagination">
-      <li className={defineSwitchClass(currentPage, pagesCount, 'prev')}>
-        <a href="/" onClick={(event) => handleSwitchPage(event, 'prev')}>
-          <i className="material-icons">chevron_left</i>
-        </a>
-      </li>
-      {paginationIdxs.map((paginationIndex) => {
-        const itemNumber = defineItemNumber(
-          paginationIndex,
-          currentPage,
-          countPaginationItems,
-          pagesCount
-        )
-        return (
-          <li className={defineItemClass(currentPage, itemNumber)} key={paginationIndex}>
-            <a href="/" onClick={(event) => handleChoosePage(event, itemNumber)}>
-              {itemNumber}
+    <>
+      {pagesCount > 1 && (
+        <ul className="pagination">
+          <li className={defineSwitchClass(currentPage, pagesCount, 'prev')}>
+            <a href="/" onClick={(event) => handleSwitchPage(event, 'prev')}>
+              <i className="material-icons">chevron_left</i>
             </a>
           </li>
-        )
-      })}
-      <li className={defineSwitchClass(currentPage, pagesCount, 'next')}>
-        <a href="/" onClick={(event) => handleSwitchPage(event, 'next')}>
-          <i className="material-icons">chevron_right</i>
-        </a>
-      </li>
-    </ul>
+          {paginationIdxs.map((paginationIndex) => {
+            const itemNumber = defineItemNumber(
+              paginationIndex,
+              currentPage,
+              countPaginationItems,
+              pagesCount
+            )
+            return (
+              <li className={defineItemClass(currentPage, itemNumber)} key={paginationIndex}>
+                <a href="/" onClick={(event) => handleChoosePage(event, itemNumber)}>
+                  {itemNumber}
+                </a>
+              </li>
+            )
+          })}
+          <li className={defineSwitchClass(currentPage, pagesCount, 'next')}>
+            <a href="/" onClick={(event) => handleSwitchPage(event, 'next')}>
+              <i className="material-icons">chevron_right</i>
+            </a>
+          </li>
+        </ul>
+      )}
+    </>
   )
 }
 

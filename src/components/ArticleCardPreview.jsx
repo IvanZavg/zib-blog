@@ -1,6 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
+import CategoryBadgeList from './CategoryBadgeList'
+
 const ArticleCardPreview = ({ article, isAuth }) => {
   return (
     <div className="col s12">
@@ -16,6 +18,9 @@ const ArticleCardPreview = ({ article, isAuth }) => {
         </div>
         <div className="card-content">
           <p className="truncate">{article.text}</p>
+          <br />
+          <CategoryBadgeList categories={article.categories} />
+          <br />
         </div>
         <div className="card-action">
           <Link to={`articles/${article.id}`}>Открыть</Link>
